@@ -1,0 +1,32 @@
+Names,	Rules,		Units,	Short,			Long
+P,	<MeterPE>,	kW,	Active Power,
+E,	<MeterPE>,	kWh,	Energy or Active Power Hours,
+Q,	<MeterPQ>,	kvar,	Reactive Power,
+Qh,	<MeterPQ>,	kvarh,	Reactive Power Hours,
+S,	<MeterPQ>,	kVA,	Apparent Power,
+Sh,	<MeterPQ>,	kVAh,	Apprarent Power Hours,
+F,	<MeterPQ>,	Hz,	Frequency,
+I1,	<MeterPQ>,	A,	Phase 1 Current,
+I2,	<MeterPQ>,	A,	Phase 2 Current,
+I3,	<MeterPQ>,	A,	Phase 3 Current,
+Pf,	<MeterPQ>,	pf,	Power Factor, Conventions for Powerfactors
+U12,	<MeterPQ>,	V,	Phase 1 to 2 Voltage, Phase 1 is Phase A
+U23,	<MeterPQ>,	V,	Phase 2 to 3 Voltage, Phase 2 is Phase B
+U31,	<MeterPQ>,	V,	Phase 3 to 1 Voltage, Phase 3 is Phase C
+Pu,	,		pu	Per Unit (0..1), A ratio between 0 and 1
+Pct,	,		%,	Percentage,
+D,	,		$,	Dollars, This is the generic currency unit
+Usd,	,		USD,	US Dollars,
+Aud,	,		AUD,	Australian Dollars,
+Php,	,		PHP,	Philipines Peso,
+T,	,		s,	Seconds,
+Y,	,		yrs,	Years,
+L,	,		L,	Litres,
+Lperh,	,		L/h,	Litres Per Hour,
+Lpere,	,		L/kWh,	Litres per kWh,
+St,	,		bool, 	Status,
+Gen,	,		,	Generator,
+Pv,	,		,	Photovoltaic Generator,
+Load,	,		,	Load,
+Fed,	,		,	Feeder,
+Capex,	,		,	Capital Expenditure,

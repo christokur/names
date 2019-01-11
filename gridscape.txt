@@ -1,0 +1,20 @@
+#
+# generic.txt - the generic grammar for things gridscape
+#
+
+<Names> ::= <Load>|<Gen>|<Pv>|<Ess>|<Fed>|<Pcc>
+
+# all meter points are just P/E
+<Meter> ::= <MeterPE>
+
+<Load> ::= Load<LoadN><Meter>
+<LoadN> ::= |1|2
+
+<Gen> ::= Gen<GenN><GenExtras>
+<GenN> ::= |1|2|3|4
+<GenExtras> ::= <Meter>|<GenStatus>
+<GenStatus> ::= <Status>
+
+
+<Status> ::= RunningSt|StoppedSt|AvailableSt
+
