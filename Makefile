@@ -10,7 +10,7 @@ all:	check
 check:
 	# --full-trace --verbose
 	pytest --capture=no --doctest-modules --maxfail=1 \
-		--hypothesis-show-statistics transmogrify.py
+		--hypothesis-show-statistics names.py
 
 clean:
 	@echo skip
