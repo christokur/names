@@ -99,17 +99,20 @@ def parts(nm):
     >>> parts('P')
     ['P']
 
+    >>> parts('Gen1U1n')
+    ['Gen1', 'U1n']
+
     >>> parts('gammadog')
     ['gammadog']
 
-    >>> parts('A1a')
-    ['A1', 'a']
+    >>> parts('A1A')
+    ['A1', 'A']
 
     >>> parts('A1')
     ['A1']
     '''
 
-    p = re.sub(r'([A-Z][a-z]*[0-9]*)', '_\\1_', nm).split('_')
+    p = re.sub(r'([A-Z][a-z]*[0-9a-z]*)', '_\\1_', nm).split('_')
     return [pn for pn in p if pn != '']
 
 
@@ -173,7 +176,7 @@ def device(nm):
     >>> device('Pv1001')
     'Pv1001'
 
-    >>> device('A1a')
+    >>> device('A1A')
     'A1'
     '''
     return parts(nm)[0]
@@ -214,6 +217,9 @@ def kind(nm):
 
     >>> kind('Pv1MaxPPa')
     'P'
+
+    >>> kind('Pv1U1n')
+    'U1n'
     '''
     if is_parameter(nm):
         r = parts(nm)[-2]
@@ -391,7 +397,7 @@ def read_description(fn):
 
 main_opts = """
 
-Usage: names <rules>...
+Usage: names [-v] <rules>...
 
 Options:
   <rules>          Rules
@@ -407,12 +413,12 @@ def main():
     global main_opts, options
     options = docopt.docopt(main_opts)
     process_rules(options['<rules>'])
-
+    
 
 def info(*args):
     global options
     # print(options)
-    if options['-v']:
+    if '-v' in options and options['-v']:
         for s in args:
             print(s, sep=' ')
         print('')
@@ -472,7 +478,7 @@ if True:
     @settings(ts)
     @given(st.from_regex(r'\A[A-Z][a-z]*\Z'),
            st.integers(1, 100),
-           st.from_regex(r'\A[A-Z_a-z]*\Z'))
+           st.from_regex(r'\A[A-Z_]*\Z'))
     def test_device_number(p, n, s):
         nm = p + str(n) + s
         assert device_number(nm) == n
@@ -480,7 +486,7 @@ if True:
     @settings(ts)
     @given(st.from_regex(r'\A[A-Z][a-z]*\Z'),
            st.integers(1, 100),
-           st.from_regex(r'\A[A-Z_a-z]*\Z'))
+           st.from_regex(r'\A[A-Z_]*\Z'))
     def test_device(p, n, s):
         nm = p + str(n) + s
         exp = p + str(n)
