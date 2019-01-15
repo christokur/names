@@ -226,8 +226,42 @@ def kind(nm):
     else:
         r = parts(nm)[-1]
     return r
+
+# this block of functions is intended to convert between different name
+# formats, e.g. CamelCase to wtg_P to wtg[1].p to ...
+# currently we only use _ names.
+def name_to_lower(nm):
+    '''returns a lower_case versio  of name
 
+    >>> name_to_lower('Gen1P')
+    'gen1_p'
 
+    >>> name_to_lower('Wtg1InvInlet2InvTemp')
+    'wtg1_inv_inlet2_inv_temp'
+    '''
+    assert(valid_name(nm))
+    return '_'.join(parts(nm)).lower()
+
+def lower_to_name(nm):
+    '''return a name from a lower_case name
+
+    >>> lower_to_name('gen1_p')
+    'Gen1P'
+    '''
+    u = True
+    r = ''
+    for c in nm:
+        if c == '_':
+            u = True
+        else:
+            if u:
+                r += c.upper()
+            else:
+                r += c
+            u = False
+    return r
+            
+    
 def fatal(m):
     '''print a fatal error message and exit'''
     print('* fatal error:' + m)
@@ -513,6 +547,18 @@ if True:
     def test_strip(a, b, c):
         assert strip(a + b + c) == b
 
+    @settings(ts)
+    @given(st.from_regex(r'\A[A-Z][A-Za-z0-9]*\Z'))
+    def test_name_to_lower(nm):
+        assert lower_to_name(name_to_lower(nm)) == nm
+
+    if False: # disabled for now
+        @settings(ts)
+        @given(st.from_regex(r'\A[a-z]+(_[a-z_0-9]+)*\Z'))
+        def test_lower_to_name(nm):
+            assert name_to_lower(lower_to_name(nm)) == nm
+
+        
 if __name__ == '__main__':
     # note: we use pytest to run the doctest code above, see Makefile
     main()
