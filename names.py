@@ -316,10 +316,12 @@ def finished(s):
 
 def expand_rules(rules, s):
     '''expand_rules expands a set of BNF rules into a dictionary'''
+    # print('expand_rules', s)
     if finished(s):
         return {s}
     else:
         results = set()
+        # print(results)
         for lhs, rhs in rules.items():
             for c in rhs.split('|'):
                 u = s.replace(lhs, c, 1)
@@ -420,7 +422,7 @@ def info(*args):
     # print(options)
     if '-v' in options and options['-v']:
         for s in args:
-            print(s, sep=' ')
+            print(s, sep=' ', end=' ')
         print('')
 
 def process_rules(rules):
