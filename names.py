@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 #
 # names.py - a library for naming using the ASIM conventions for
 #
